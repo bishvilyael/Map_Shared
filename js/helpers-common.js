@@ -3,6 +3,7 @@ function escapeHtml(text) {
   div.textContent = text || "";
   return div.innerHTML;
 }
+
 function extractDriveFileId(url) {
   if (!url) return null;
 
@@ -20,10 +21,12 @@ function extractDriveFileId(url) {
 
   return null;
 }
+
 function convertDriveUrl(url) {
   const fileId = extractDriveFileId(url);
   return fileId ? `https://lh3.googleusercontent.com/d/${fileId}=w1000` : url;
 }
+
 function getPropCaseInsensitive(props, candidates) {
   if (!props) return "";
 
@@ -32,19 +35,43 @@ function getPropCaseInsensitive(props, candidates) {
       return props[key];
     }
   }
-  function getFeatureName(props) {
+
+  const lowerMap = {};
+  Object.keys(props).forEach(k => {
+    lowerMap[k.toLowerCase()] = k;
+  });
+
+  for (const key of candidates) {
+    const actual = lowerMap[String(key).toLowerCase()];
+    if (actual && props[actual] != null) return props[actual];
+  }
+
+  return "";
+}
+
+function getFeatureName(props) {
   return String(
     getPropCaseInsensitive(props, ["name", "Name", "NAME", "title", "Title"]) || "ללא שם"
   ).trim();
 }
+
 function getFeatureDescription(props) {
   return String(
     getPropCaseInsensitive(props, ["description", "Description", "DESCRIPTION", "desc", "Desc"]) || ""
   );
 }
+
 function getFeatureLatLng(feature) {
   const g = feature && feature.geometry;
 
   if (!g || g.type !== "Point" || !Array.isArray(g.coordinates) || g.coordinates.length < 2) {
     return null;
   }
+
+  const lon = parseFloat(g.coordinates[0]);
+  const lat = parseFloat(g.coordinates[1]);
+
+  if (Number.isNaN(lat) || Number.isNaN(lon)) return null;
+
+  return L.latLng(lat, lon);
+}
