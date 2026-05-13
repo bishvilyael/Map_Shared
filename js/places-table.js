@@ -12,7 +12,7 @@ function renderPlacesTable() {
     panel.id = "placesTablePanel";
     panel.innerHTML = `
       <div class="places-table-header">
-        <span>רשימת נקודות</span>
+        <span>מקומות בהם טיילתי עם יעל</span>
         <button id="placesTableToggle" type="button">הסתר</button>
       </div>
       <div id="placesTableBodyWrap">
