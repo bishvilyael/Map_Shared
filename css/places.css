@@ -1,0 +1,128 @@
+#placesTablePanel {
+  position: absolute;
+  z-index: 1000;
+  right: 10px;
+  bottom: 25px;
+  width: 520px;
+  max-width: calc(100vw - 20px);
+  max-height: 45vh;
+  background: rgba(255,255,255,0.96);
+  border: 1px solid #bbb;
+  border-radius: 10px;
+  box-shadow: 0 1px 7px rgba(0,0,0,0.25);
+  direction: rtl;
+  font-family: Arial, sans-serif;
+  overflow: hidden;
+}
+
+.places-table-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 10px;
+  font-weight: bold;
+  background: #f3f3f3;
+  border-bottom: 1px solid #ddd;
+}
+
+#placesTableToggle {
+  font-size: 12px;
+  padding: 2px 8px;
+  cursor: pointer;
+}
+
+#placesTableBodyWrap {
+  max-height: calc(45vh - 35px);
+  overflow: auto;
+}
+
+.places-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.places-table th,
+.places-table td {
+  border-bottom: 1px solid #ddd;
+  padding: 4px 6px;
+  text-align: right;
+  white-space: nowrap;
+}
+
+.places-table tbody tr {
+  cursor: pointer;
+}
+
+.places-table tbody tr:hover {
+  background: #eef6ff;
+}
+#placesTablePanel.collapsed {
+  width: 180px;
+  max-height: none;
+}
+
+#placesTablePanel.collapsed .places-table-header {
+  border-bottom: none;
+}
+@media (max-width: 768px) {
+
+  #placesTablePanel {
+    width: calc(100vw - 12px);
+    right: 6px;
+    left: 6px;
+    bottom: 6px;
+    max-height: 38vh;
+    border-radius: 8px;
+  }
+
+  #placesTableBodyWrap {
+    max-height: calc(38vh - 32px);
+  }
+
+  .places-table {
+    font-size: 11px;
+  }
+
+  .places-table th,
+  .places-table td {
+    padding: 2px 4px;
+  }
+
+  .places-table-header {
+    padding: 4px 8px;
+    font-size: 13px;
+  }
+
+  #placesTableToggle {
+    font-size: 11px;
+    padding: 1px 6px;
+  }
+
+  .badge-selector-bar {
+    top: 68px;
+    right: 8px;
+    left: 8px;
+  }
+
+  .badge-selector-bar-inner {
+    font-size: 13px;
+    padding: 4px 8px;
+  }
+
+  #badgeSelect {
+    min-width: 140px;
+    font-size: 13px;
+  }
+
+  .map-header-box {
+    font-size: 16px;
+    padding: 6px 10px;
+    gap: 6px;
+  }
+
+  .header-icon {
+    width: 20px;
+    height: 20px;
+  }
+}
