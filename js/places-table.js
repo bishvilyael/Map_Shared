@@ -22,7 +22,7 @@ function renderPlacesTable() {
               <th>תאריך</th>
               <th>יעל</th>
               <th>שם</th>
-              <th>מקום</th>
+              <th>אתר</th>
               <th>פוסט</th>
             </tr>
           </thead>
