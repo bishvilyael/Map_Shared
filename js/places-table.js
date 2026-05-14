@@ -3,7 +3,11 @@ function parseBadgeDate(dateText) {
   if (!m) return 0;
   return new Date(`${m[3]}-${m[2]}-${m[1]}`).getTime();
 }
-
+const site =
+  props["אתר"] ||
+  props.Site ||
+  extractSiteFromDescription(props.description);
+  
 function renderPlacesTable() {
   let panel = document.getElementById("placesTablePanel");
 
@@ -22,7 +26,7 @@ function renderPlacesTable() {
               <th>תאריך</th>
               <th>יעל</th>
               <th>שם</th>
-              <th>מקום</th>
+              <th>אתר</th>
               <th>FB</th>
             </tr>
           </thead>
@@ -62,7 +66,7 @@ function renderPlacesTable() {
       <td>${escapeHtml(row.date || "")}</td>
       <td>${escapeHtml(row.badgeNo || "")}</td>
       <td>${escapeHtml(row.name || "")}</td>
-      <td>${escapeHtml(row.place || "—")}</td>
+      <td>${escapeHtml(row.site || "—")}</td>
       <td>${
         row.fbUrl
           ? `<a href="${escapeHtml(row.fbUrl)}" target="_blank" rel="noopener noreferrer">פייסבוק</a>`
@@ -81,6 +85,13 @@ function renderPlacesTable() {
 
     tbody.appendChild(tr);
   });
+}
+function extractSiteFromDescription(description) {
+  if (!description) return "";
+
+  const match = description.match(/<b>אתר:<\/b>\s*(.*?)<br\/?>/i);
+
+  return match ? match[1].trim() : "";
 }
 function makePlacesTableDraggable(panel) {
   const header = panel.querySelector(".places-table-header");
