@@ -20,3 +20,10 @@ function extractPointDetailsFromDescription(html) {
     fbUrl: fbLink
   };
 }
+function extractImageHtml(descriptionHtml) {
+  if (!descriptionHtml) return "";
+
+  const match = String(descriptionHtml).match(/<img\b[^>]*>/i);
+
+  return match ? match[0] : "";
+}
