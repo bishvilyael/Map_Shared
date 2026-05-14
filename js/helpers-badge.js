@@ -17,6 +17,7 @@ function extractPointDetailsFromDescription(html) {
     name: getValue("שם"),
     date: getValue("תאריך"),
     place: getValue("מקום") ||  getValue("אתר"),
+	id: getValue("ID"),
     fbUrl: fbLink
   };
 }

@@ -62,7 +62,7 @@ function renderPlacesTable() {
       <td>${escapeHtml(row.date || "")}</td>
       <td>${escapeHtml(row.badgeNo || "")}</td>
       <td>${escapeHtml(row.name || "")}</td>
-      <td>${escapeHtml(row.place || "—")}</td>
+      <td>${escapeHtml(row.site || row.place || "—")}</td>
       <td>${
         row.fbUrl
           ? `<a href="${escapeHtml(row.fbUrl)}" target="_blank" rel="noopener noreferrer">פייסבוק</a>`
