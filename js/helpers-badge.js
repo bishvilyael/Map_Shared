@@ -3,10 +3,29 @@ function extractPointDetailsFromDescription(html) {
   temp.innerHTML = html || "";
 
   function getValue(label) {
-    const text = temp.innerHTML;
-    const re = new RegExp(`<b>\\s*${label}\\s*:\\s*<\\/b>\\s*([^<]*)`, "i");
-    const m = text.match(re);
-    return m ? m[1].trim() : "";
+    const bolds = Array.from(temp.querySelectorAll("b"));
+
+    for (const b of bolds) {
+      const labelText = (b.textContent || "").trim();
+
+      if (labelText === `${label}:`) {
+        let value = "";
+
+        let node = b.nextSibling;
+
+        while (node) {
+          if (node.nodeName === "BR") break;
+
+          value += node.textContent || "";
+
+          node = node.nextSibling;
+        }
+
+        return value.trim();
+      }
+    }
+
+    return "";
   }
 
   const fbLink = Array.from(temp.querySelectorAll("a"))
@@ -16,11 +35,12 @@ function extractPointDetailsFromDescription(html) {
   return {
     name: getValue("שם"),
     date: getValue("תאריך"),
-    place: getValue("מקום") ||  getValue("אתר"),
-	id: getValue("ID"),
+    place: getValue("אתר") || getValue("מקום"),
+    id: getValue("ID"),
     fbUrl: fbLink
   };
 }
+
 function extractImageHtml(descriptionHtml) {
   if (!descriptionHtml) return "";
 
