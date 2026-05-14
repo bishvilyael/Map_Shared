@@ -84,3 +84,13 @@ function formatPopupDate(dateText) {
 
   return `${parseInt(m[1], 10)}/${parseInt(m[2], 10)}/${m[3].slice(-2)}`;
 }
+function extractImageHtml(descriptionHtml) {
+  if (!descriptionHtml) return "";
+
+  const temp = document.createElement("div");
+  temp.innerHTML = descriptionHtml;
+
+  const img = temp.querySelector("img");
+
+  return img ? img.outerHTML : "";
+}
