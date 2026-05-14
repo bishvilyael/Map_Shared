@@ -17,16 +17,3 @@ function extractPointDetailsFromDescription(html) {
     fbUrl: fbMatch ? fbMatch[1] : ""
   };
 }
-
-  const fbLink = Array.from(temp.querySelectorAll("a"))
-    .map(a => a.getAttribute("href") || "")
-    .find(href => /facebook\.com/i.test(href)) || "";
-
-  return {
-    name: getValue("שם"),
-    date: getValue("תאריך"),
-    place: getValue("אתר") || getValue("מקום"),
-    id: getValue("ID"),
-    fbUrl: fbLink
-  };
-}
