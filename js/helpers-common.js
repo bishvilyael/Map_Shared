@@ -74,4 +74,12 @@ function getFeatureLatLng(feature) {
   if (Number.isNaN(lat) || Number.isNaN(lon)) return null;
 
   return L.latLng(lat, lon);
+}function formatPopupDate(dateText) {
+  if (!dateText) return "";
+
+  const m = String(dateText).match(/^(\d{2})-(\d{2})-(\d{4})$/);
+
+  if (!m) return dateText;
+
+  return `${parseInt(m[1], 10)}/${parseInt(m[2], 10)}/${m[3].slice(-2)}`;
 }
