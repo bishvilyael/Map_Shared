@@ -126,9 +126,19 @@
     height: 20px;
   }
 }
+#placesTableBodyWrap {
+  max-height: 260px;
+  overflow-y: auto;
+}
+
+.places-table {
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
 .places-table thead th {
   position: sticky;
   top: 0;
-  z-index: 2;
-  background: white;
+  z-index: 10;
+  background: #fff;
 }
