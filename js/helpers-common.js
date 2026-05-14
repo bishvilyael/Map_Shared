@@ -94,3 +94,9 @@ function extractImageHtml(descriptionHtml) {
 
   return img ? img.outerHTML : "";
 }
+function extractHtmlField(html, label) {
+  const text = String(html || "");
+  const re = new RegExp("<b>\\s*" + label + "\\s*:\\s*<\\/b>\\s*([^<]*)", "i");
+  const m = text.match(re);
+  return m ? m[1].trim() : "";
+}
